@@ -13,20 +13,35 @@ public class MyUnzipper {
 	}
 	
 	public void main(){
-		//ルート・ディレクトリの指定
+
 		Scanner scanner = new Scanner(System.in);
+		
+		//モードの指定
+		System.out.print("Whitch Type?（1.PresLogChecker 2. Block log checker):");
+		System.out.flush();
+		int type = scanner.nextInt();
+		scanner.reset();
+		
+		//ログ・ファイルの有無の確認するか指定
 		System.out.print("check fether log files exists?(0.false，1.true):");
 		String isCheckLog = scanner.next();
 		scanner.reset();
 		
 		System.out.print("Input root:");
 		System.out.flush();
-		
+		//ルート・ディレクトリの指定			
 		String path = scanner.next();
 		unzipFiles(path);
-		if(Integer.valueOf(isCheckLog) == 1){
-			LogChecker.checkLog(path);	
+		
+		if(type == 1){
+			if(Integer.valueOf(isCheckLog) == 1){
+				LogChecker.checkLog(path);	
+			}			
 		}
+		if(type == 2){
+			LogChecker.checkBlockLog(path);
+		}
+
 		scanner.close();
 	}
 	
